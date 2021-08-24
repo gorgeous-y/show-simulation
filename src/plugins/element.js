@@ -13,9 +13,11 @@ import {
     Menu,
     Submenu,
     MenuItem,
-    MenuItemGroup,
-    RadioGroup,
     RadioButton,
+    Breadcrumb,
+    BreadcrumbItem,
+    Empty,
+    Pagination
 } from 'element-ui'
 
 // 全局导入 import 'element-ui/lib/theme-chalk/index.css'(报错问题);
@@ -30,10 +32,12 @@ Vue.use(Aside)
 Vue.use(Main)
 Vue.use(Menu)
 Vue.use(MenuItem)
-Vue.use(MenuItemGroup)
 Vue.use(Submenu)
-Vue.use(RadioGroup)
 Vue.use(RadioButton)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Empty)
+Vue.use(Pagination)
 
 // Message需要全局挂载 和以上不一样，$message是自定义属性 只要合法即可
 Vue.prototype.$message = Message

@@ -1,6 +1,6 @@
 <template>
   <el-container class="home-bar">
-    <el-header>
+    <el-header style="height: 80px">
       <div>
         <img src="../assets/logo.png" alt="BUAA" />
         <span>毕设仿真展示平台</span>
@@ -19,6 +19,8 @@
           unique-opened
           :collapse="isCollapse"
           :collapse-transition="false"
+          router
+          :default-active="activePath"
         >
           <!-- 一级菜单 -->
           <el-submenu
@@ -36,9 +38,10 @@
 
             <!-- 二级菜单 -->
             <el-menu-item
-              :index="subItem.id + ''"
+              :index="'/' + subItem.path"
               v-for="subItem in item.children"
               :key="subItem.id"
+              @click="saveNavState('/' + subItem.path)"
             >
               <template slot="title">
                 <!-- 图标 -->
@@ -51,8 +54,13 @@
         </el-menu>
       </el-aside>
       <el-container class="show-bar">
-        <el-main>Main</el-main>
-        <el-footer>Footer</el-footer>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+        <el-footer style="height: 60px">
+          <dl>《基于CSI微小特征的无源目标检测方法研究》</dl>
+          <dt>---ZY1902315郭宇</dt>
+        </el-footer>
       </el-container>
     </el-container>
   </el-container>
@@ -62,8 +70,9 @@
 export default {
   data() {
     return {
+      // 是否折叠
       isCollapse: false,
-      isshow: 0,
+      // 左侧菜单数据
       menulist: [],
       iconsObj: {
         125: 'el-icon-s-management',
@@ -71,20 +80,28 @@ export default {
         101: 'el-icon-video-camera-solid',
         102: 'el-icon-s-opportunity',
         145: 'el-icon-s-data'
-      }
+      },
+      // 被激活的链接
+      activePath: ''
     }
   },
+
+  // 利用生命周期函数 控制赋值的时间
   created() {
     this.getMenulist()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
+    // 点击按钮，切换菜单的折叠与展开
     toggleCollapse() {
       this.isCollapse = !this.isCollapse
     },
+    // 退出登录设置
     logout() {
       window.sessionStorage.clear()
       this.$router.push('login')
     },
+    // 获取所有菜单
     async getMenulist() {
       const { data: res } = await this.$http.get('menus')
       if (res.meta.status !== 200) {
@@ -93,8 +110,9 @@ export default {
       this.menulist = res.data
       console.log(res)
     },
-    enter() {
-      this.isshow = 1
+    // 保存链接的激活状态
+    saveNavState(activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
     }
   }
 }
@@ -119,12 +137,11 @@ export default {
       display: flex;
       align-items: center;
       img {
-        width: 8%;
-        height: 8%;
+        width: 10%;
       }
       > span {
-        padding-left: 10px;
-        font: bold 25px '微软雅黑';
+        padding-left: 30px;
+        font: bold 28px '微软雅黑';
         color: #fff;
       }
     }
@@ -134,7 +151,6 @@ export default {
       background-color: rgb(0, 97, 172);
       .toggle-button {
         font-size: 10px;
-        line-height: 24px;
         color: #fff;
         text-align: center;
         letter-spacing: 0.2em;
@@ -144,13 +160,26 @@ export default {
         border-right: 0px;
       }
     }
-    .show-bar {
-      .el-main {
-        background-color: azure;
-      }
-      .el-footer {
-        background-color: blueviolet;
-      }
+  }
+}
+
+.show-bar {
+  .el-main {
+    background-color: azure;
+  }
+  .el-footer {
+    background-color: rgb(10, 45, 103);
+    font: bold 25px '宋体';
+    color: #fff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    > dl {
+      margin: 0px;
+    }
+    > dt {
+      font: bold 20px '宋体';
+      margin-left: -100px;
     }
   }
 }
