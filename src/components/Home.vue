@@ -108,7 +108,6 @@ export default {
         return this.$message.error(res.meta.msg)
       }
       this.menulist = res.data
-      console.log(res)
     },
     // 保存链接的激活状态
     saveNavState(activePath) {
