@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width: 600px; height: 400px"></div>
+  <div id="main"></div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
     run(Edata)
 
     function run(_rawData) {
-      var models = ['Raw', 'FSPL', '2Ray', '3Ray', 'E3M']
+      var models = ['FSPL', '2Ray', '3Ray', 'E3M']
       var datasetWithFilters = []
       var seriesList = []
       echarts.util.each(models, function(model) {
@@ -24,12 +24,12 @@ export default {
           //组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件
           id: datasetId,
           // 指定 dataset.transform 以哪个 dataset 作为输入，指定了一个index为dataset_raw的dataset。
-          fromDatasetId: 'dataset_model',
+          fromDatasetId: 'dataset_raw',
           transform: {
             type: 'filter',
             config: {
               and: [
-                { dimension: 'Distance', gte: 3838.020235 },
+                { dimension: 'Distance', gte: 2000 },
                 { dimension: 'Model', '=': model }
               ]
             }
@@ -88,8 +88,8 @@ export default {
         dataset: [
           {
             //   组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
-            // 这个 series 引用 index 为 `dataset_model` 的 dataset 。
-            id: 'dataset_moel',
+            // 这个 series 引用 index 为 `dataset_raw` 的 dataset 。
+            id: 'dataset_raw',
             // 原始数据。一般来说，原始数据表达的是二维表。可以用如下这些格式表达二维表：二维数组，其中第一行/列可以给出 维度名，也可以不给出，直接就是数据：
             source: _rawData
           }
@@ -104,7 +104,9 @@ export default {
         },
         xAxis: {
           type: 'category',
-          nameLocation: 'middle'
+          nameLocation: 'middle',
+          boundaryGap: true,
+          data: [2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000]
         },
         yAxis: {
           name: 'RxPower'

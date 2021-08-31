@@ -10,8 +10,8 @@ import Equipment from '../components/measurement/Equipment.vue'
 import Site from '../components/measurement/Site.vue'
 import Process from '../components/measurement/Process.vue'
 import Algorithms from '../components/algorithm/Algorithms.vue'
-import Results from '../components/result/Results.vue'
-
+import BResults from '../components/result/BResults.vue'
+import SResults from '../components/result/SResults.vue'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -31,7 +31,8 @@ const router = new VueRouter({
         { path: '/site', component: Site },
         { path: '/steps', component: Process },
         { path: '/algorithms', component: Algorithms },
-        { path: '/results', component: Results },
+        { path: '/bresults', component: BResults },
+        { path: '/sresults', component: SResults },
       ]
     }
   ]

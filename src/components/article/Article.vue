@@ -9,10 +9,7 @@
 
     <!-- 文本区域 -->
     <dl>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae
-      repellendus dicta magnam laboriosam itaque asperiores rem obcaecati
-      voluptatem, assumenda quisquam ex voluptas laborum quibusdam sit ipsa
-      exercitationem aut aperiam doloribus.
+      
     </dl>
 
     <!-- 分页区域 -->
