@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width: 1000px; height: 500px"></div>
+  <div id="main" style="width:1000px; height: 600px"></div>
 </template>
 
 <script>
@@ -10,8 +10,6 @@ import TwoRaydata from '../../assets/resultdata/2Ray.json'
 import ThreeRaydata from '../../assets/resultdata/3Ray.json'
 import E3Mdata from '../../assets/resultdata/E3M.json'
 export default {
-  setup() {},
-  methods: {},
   mounted() {
     var myChart = echarts.init(document.getElementById('main'))
     var option = {
@@ -21,13 +19,7 @@ export default {
       tooltip: {
         trigger: 'axis' // 鼠标提示框
       },
-      color: [
-        'black',
-        'rgb(145,204,117)',
-        'rgb(255,6,6)',
-        'rgb(191,90,255)',
-        'blue'
-      ],
+      color: ['black', 'rgb(145,204,117)', 'blue', 'rgb(191,90,255)', 'red'],
       legend: {
         // 图例
         orient: 'horizontal',
@@ -42,7 +34,7 @@ export default {
           fontWeight: 'bolder',
           fontFamily: '微软雅黑'
         },
-        right: '15%',
+        right: '6%',
         top: '5%',
         data: [
           { name: 'Raw', icon: 'circle' },
@@ -58,17 +50,17 @@ export default {
       title: {
         text: 'E3M模型与其他三种模型拟合对比图',
         left: 'center',
-        bottom: '3%',
+        bottom: '0%',
         textStyle: {
           fontSize: '24px'
         }
       },
       grid: {
         // 图表相对位置
-        top: '10%',
-        left: '5%',
-        right: '15%',
-        bottom: '20%',
+        top: '9%',
+        left: '6%',
+        right: '6%',
+        bottom: '15%',
         containLabel: true
       },
       xAxis: {
@@ -171,10 +163,14 @@ export default {
             fontWeight: 'bolder',
             fontSize: '14'
           },
+          lineStyle: {
+            width: '3'
+          },
           name: '3Ray',
           type: 'line',
           data: ThreeRaydata
         },
+        // E3M
         {
           showSymbol: false,
           smooth: true,
@@ -185,6 +181,9 @@ export default {
             },
             fontWeight: 'bolder',
             fontSize: '14'
+          },
+          lineStyle: {
+            width: '4'
           },
           name: 'E3M',
           type: 'line',
@@ -199,3 +198,9 @@ export default {
   }
 }
 </script>
+
+<style lang="less" scoped>
+#main {
+  margin: 2% auto;
+}
+</style>

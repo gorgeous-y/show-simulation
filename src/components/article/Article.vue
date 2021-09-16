@@ -1,19 +1,45 @@
 <template>
-  <div>
-    <!-- 面包屑导航区域 -->
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>项目介绍</el-breadcrumb-item>
-      <el-breadcrumb-item>项目详情</el-breadcrumb-item>
-    </el-breadcrumb>
+    <div>
+        <!-- 面包屑导航区域 -->
+        <el-breadcrumb separator-class="el-icon-arrow-right">
+            <el-breadcrumb-item :to="{ path: '/home' }"
+                >首页</el-breadcrumb-item
+            >
+            <el-breadcrumb-item>项目介绍</el-breadcrumb-item>
+            <el-breadcrumb-item>项目详情</el-breadcrumb-item>
+        </el-breadcrumb>
 
-    <!-- 文本区域 -->
-    <dl>
-      
-    </dl>
+        <!-- 文本区域 -->
+        <dl class="text">
+            <b>课题来源</b>
+            <dt>
+                国家重点研发项目“天临空地车轨道交通监测系统”和国家无委政府基金：“空天地电磁频谱监测与无线信道测量关键技术研究”中“空天地通信监测一体化关键技术研究”
+            </dt>
+            <b>课题背景</b>
+            <dt>
+                人们对于无源目标检测的研究与探索早在18世纪便已经开始，近年来，随着无线通信技术和智能设备的快速发展，无线通信不仅可以用作通信，也可用作环境感知。无线信号将通信和感知合二为一，在诸如室内定位[1][2][3]、无源目标检测[4][5]、智能家居及人机交互[6]等领域中得到广泛应用。随着无线通信感知一体化领域的迅猛发展，对无源目标检测的研究也日益深入，通信感知一体化系统的发展与完善为无源目标检测研究带来新思路和巨大的推动力。
+                传统的目标检测方法有很多，诸如视频识别、射频识别、红外线检测、超宽带技术、超声波技术等。最为常见的是视频检测技术，应用的也比较广泛，然而视频监控对环境有一定的要求，且存在监控盲区和用户隐私泄露等问题。红外监控虽然可以工作在黑暗的环境中，但同样有监控视角的限制，只能用于点对点的入侵检测。
+                RFID
+                是一种利用无线电波自动识别跟踪对象的技术。主要由标签卡组成，标签是耦合到微处理器的小型
+                RF 芯片，微处理器与 RFID 读取器无线通信。文献[7]将 RFID
+                标签集成在各种类型的传感器节点上并将节点部署在矿井下，实时监控井下异常侵入行为的发生。但是
+                RFID
+                识别距离短，需要大规模模部署。超声波技术具有穿透力强、方向性好等优势，但易受多径效应干扰、成本高。
+                超宽带（UWB）是一种可以在大部分无线电频谱上使用极低能量级进行短距离传播的无线电技术。UWB
+                在非合作雷达成像中具有传统应用。主要用于精确定位和目标跟踪。基于超宽带的入侵检测技术有精度高、低延迟、穿透力强、功耗低等优点，但是其传输距离近，部署成本高。随着无线局域网(Wireless
+                LAN，简称WLAN)的蓬勃发展。WiFi走进千家万户，成为了现在室内主要部署的通信网络，WiFi
+                已经在无源目标检测领域得到广泛的应用。然而WiFi无源目标检测主要是在室内进行定位感知，在室内环境下，信号发射机产生的无线电波经由直射、反射、散射等多条路径传播，在信号接收机处OFDM调制的WiFi形成多条线路叠加信号，这些信号富含周围环境特征信息[8]，如传播过程中的物理空间，其他外来物体的状态等。直接利用室内现有的WiFi信号，不仅节约了成本，且具有易操作性，国内外众多学者纷纷展开了深入研究。
+                WiFi信号作为目前通信感知一体化的主选信号，在室内定位[7,8,9]，人机交互的智能识别[10,11,12]等领域应用广泛，这些利用
+                WiFi
+                技术应用目前只限于在特定的安装有WiFi的室内场景中，场景空间上存在局限性。基于WiFi的室内定位或者目标检测技术所检测的都是人体，虽然现已有文献对目标进行了分类研究，但是却没有界定检测目标的边界，无法确定具体的检测精度。
+                综上所述通信感知一体化对生产生活都具有极其重要的意义，目前通信感知主要是基于WiFi信号的，为了解决WiFi信号部署造成的场景空间上存在局限性及进一步研究感知精度问题，本文基于
+                “空天地电磁频谱监测与无线信道测量关键技术研究”项目需求，选择了无人机通信频段的1.4GHz序列信号作为通信感知一体化的主信号，分别在海洋场景，郊区场景和城市场景下进行了无源目标检测。
+            </dt>
 
-    <!-- 分页区域 -->
-    <!-- <el-pagination
+        </dl>
+
+        <!-- 分页区域 -->
+        <!-- <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="currentPage4"
@@ -23,23 +49,34 @@
             :total="400"
         >
         </el-pagination> -->
-  </div>
+    </div>
 </template>
 
 <script>
 export default {
-  setup() {},
-  methods: {
-    // 监听 pagesize 改变的事件
-    // handleSizeChange(newSize){
-    //     console.log(newSize)
-    // },
-    // // 监听页码值改变
-    // handleCurrentChange(newPage){
-    //     console.log(newSize)
-    // }
-  }
+    setup() {},
+    methods: {
+        // 监听 pagesize 改变的事件
+        // handleSizeChange(newSize){
+        //     console.log(newSize)
+        // },
+        // // 监听页码值改变
+        // handleCurrentChange(newPage){
+        //     console.log(newSize)
+        // }
+    },
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.text{
+  width: 80%;
+  margin: 3% auto;
+  padding:0 3%;
+  overflow: auto;
+  background-color: rgb(243, 243, 239);
+  >b{
+    font: bold 30px/70px '微软雅黑';
+  }
+}
+</style>

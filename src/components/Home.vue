@@ -8,9 +8,7 @@
             <el-button type="info" @click="logout"> 退出 </el-button>
         </el-header>
         <el-container class="aside-bar">
-            <el-aside :width="isCollapse ? '65px ' : '200px'"
-              
-            >
+            <el-aside :width="isCollapse ? '65px ' : '200px'">
                 <!-- 侧边栏菜单区域 -->
                 <el-menu
                     background-color="rgb(0, 97, 172)"
@@ -53,15 +51,17 @@
                     </el-submenu>
                 </el-menu>
             </el-aside>
-            <!-- 折叠区 -->
-            <div
-                class="toggle-button "
-                @click="toggleCollapse "
-                :class="isCollapse? 'el-icon-d-arrow-right' : 'el-icon-d-arrow-left'"
-            >
-            </div>
-            
             <el-container class="show-bar">
+                <!-- 折叠区 -->
+                <div
+                    class="toggle-button"
+                    @click="toggleCollapse"
+                    :class="
+                        isCollapse
+                            ? 'el-icon-d-arrow-right'
+                            : 'el-icon-d-arrow-left'
+                    "
+                ></div>
                 <el-main>
                     <router-view></router-view>
                 </el-main>
@@ -164,6 +164,7 @@ export default {
     }
 }
 .toggle-button {
+    position: absolute;
     background-color: rgb(240, 255, 255);
     font-size: 15px;
     align-items: center;
@@ -171,13 +172,13 @@ export default {
     text-align: center;
     letter-spacing: 0.2em;
     cursor: pointer;
-    padding-top: 10%;
-    height: 600px;
+    padding-top: 9.6%;
 }
 
 .show-bar {
     .el-main {
         background-color: azure;
+        padding-left: 5%;
     }
     .el-footer {
         background-color: rgb(10, 45, 103);
